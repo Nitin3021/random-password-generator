@@ -44,8 +44,8 @@
 .password-display {
   background-color: white;
   color: black;
-  /* height: 2rem; */
-  width: 15rem;
+  height: 2rem;
+  width: 20rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,6 +58,9 @@
 
 .input-number {
   width: 2rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  font-weight: bold;
 }
 
 .characterAmountContainer {
@@ -69,8 +72,16 @@ label {
   font-weight: bold;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1200px) {
+@media (max-width: 480px) {
   .password-display {
-    width: 20rem;
+    width: 15rem;
+  }
+
+  .form {
+    grid-template-columns: auto 10rem;
+    row-gap: 2rem;
+    column-gap: 1rem;
+    justify-content: space-evenly;
+    align-items: center;
   }
 }
