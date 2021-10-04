@@ -1,5 +1,10 @@
 .container {
-  background-color: rgb(70, 70, 112);
+  background: rgb(212, 64, 109);
+  background: radial-gradient(
+    circle,
+    rgba(212, 64, 109, 0.5) 31%,
+    rgba(100, 187, 219, 0.6) 59%
+  );
   border: 2px solid black;
   border-radius: 1rem;
   display: flex;
@@ -41,19 +46,32 @@
   background-color: #ffffff33;
 }
 
-.password-display {
+.password-container {
   background-color: white;
   color: black;
   height: 2rem;
   width: 20rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   border-radius: 1rem;
   border: 2px solid black;
-  padding: 1rem;
+  padding: 1rem 0 1rem 1rem;
   margin: 20px;
+}
+
+.password-display {
   word-break: break-all;
+}
+
+.copy-btn {
+  border: none;
+  border-radius: 1rem;
+  background: rgba(189, 228, 226, 0.3);
+  margin: 10px 0 10px 10px;
+  padding: 1.5rem;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .input-number {
@@ -73,8 +91,22 @@ label {
 }
 
 @media (max-width: 480px) {
-  .password-display {
+  .password-container {
+    height: 4rem;
     width: 15rem;
+    margin: 20px 5px;
+  }
+
+  .copy-btn {
+    border: none;
+    border-radius: 1rem;
+    background: rgba(189, 228, 226, 0.3);
+    margin: 0 0 0 10px;
+    height: 6rem;
+    width: 60px;
+    cursor: pointer;
+    font-weight: bold;
+    padding-left: 10px;
   }
 
   .form {

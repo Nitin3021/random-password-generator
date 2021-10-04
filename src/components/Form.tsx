@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import { COPIED_VALUE, COPY_VALUE } from 'constants/formConstants'
+import { useRef, useState } from 'react'
 import passwordGenerator from 'utils/passwordGenerator'
 
 const Form = () => {
@@ -6,8 +7,10 @@ const Form = () => {
   const [optionUppercase, setOptionUppercase] = useState(false)
   const [optionNumber, setOptionNumber] = useState(false)
   const [optionSymbol, setOptionSymbol] = useState(false)
+  const [copyBtnText, setCopyBtnTxt] = useState(COPY_VALUE)
   const [randomPassword, setRandomPassword] = useState('')
-  const min = 1;
+  const copy = useRef(null) as any
+  const min = 1
   const max = 50
 
   const onCharacterChange = (e: any) => {
@@ -18,6 +21,7 @@ const Form = () => {
 
   const onSubmit = (e: any) => {
     e.preventDefault()
+    setCopyBtnTxt(COPY_VALUE)
 
     const getPassword = passwordGenerator(
       characterLength,
@@ -29,14 +33,38 @@ const Form = () => {
     setRandomPassword(getPassword)
   }
 
+  const onCopyToClipboard = () => {
+    const copyValue = copy.current!.innerHTML.toString()
+    navigator.clipboard
+      .writeText(copyValue)
+      .then(function () {
+        setCopyBtnTxt(COPIED_VALUE) // success
+      })
+      .catch(function () {
+        alert('An error occured while copying') // error
+      })
+  }
+
   return (
     <div className='container'>
       <div className='form-title'>Password Generator</div>
-      <div className='password-display'>{randomPassword}</div>
+      <div className='password-container'>
+        <div className='password-display' ref={copy}>
+          {randomPassword}
+        </div>
+        <button
+          className='copy-btn'
+          type='button'
+          onClick={onCopyToClipboard}
+          disabled={randomPassword.length === 0}
+        >
+          {copyBtnText}
+        </button>
+      </div>
 
       <form className='form' onSubmit={onSubmit}>
         <label htmlFor='characterAmountForNumber'>Password length</label>
-        <div className='characterAmountContainer'>
+        <div className='character-amount-container'>
           <input
             id='characterAmountForRange'
             type='range'

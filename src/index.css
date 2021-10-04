@@ -1,5 +1,10 @@
 body {
-  background-color: grey;
+  background: rgb(212, 170, 64);
+  background: linear-gradient(
+    -45deg,
+    rgba(212, 170, 64, 0.8) 13%,
+    rgba(182, 192, 215, 0.6) 92%
+  );
   min-height: 100vh;
   display: flex;
   justify-content: center;
