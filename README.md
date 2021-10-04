@@ -2,13 +2,13 @@
 
 ## Overview
 
-Welcome to my personal project! I am working on this whenever I can. This project is a random password generator. It can generate password based on the required parameters as selected on the application.
+Welcome to my personal project! This project is a random password generator. It can generate password based on the required parameters as selected on the application.
 
 <ins>Desktop View</ins>
-![screenshot](https://github.com/Nitin3021/public/git_images/app_desktop.PNG)
+![screenshot](https://github.com/Nitin3021/random-password-generator/blob/f2b3b6e34a04504e4ed7c90aa63e33d38bc5d313/public/git_images/app_desktop.PNG)
 
 <ins>Mobile View</ins>
-![screenshot](https://github.com/Nitin3021/public/git_images/app_mobile.PNG)
+![screenshot](https://github.com/Nitin3021/random-password-generator/blob/f2b3b6e34a04504e4ed7c90aa63e33d38bc5d313/public/git_images/app_mobile.PNG)
 
 ## Features
 
