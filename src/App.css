@@ -50,7 +50,7 @@
   background-color: white;
   color: black;
   height: 2rem;
-  width: 20rem;
+  width: 25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -81,7 +81,7 @@
   font-weight: bold;
 }
 
-.characterAmountContainer {
+.character-amount-container {
   display: flex;
   justify-content: center;
 }

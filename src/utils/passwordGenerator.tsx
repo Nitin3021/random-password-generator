@@ -1,10 +1,10 @@
 import arrayFromLowToHigh from './arrayGenerator'
 
 const passwordGenerator = (
-  characterLength: number,
-  optionUppercase: boolean,
-  optionNumber: boolean,
-  optionSymbol: boolean
+  characterLength: number = 0,
+  optionUppercase: boolean = false,
+  optionNumber: boolean = false,
+  optionSymbol: boolean = false
 ) => {
   //Character codes from standard ASCII table
   const UPPERCASE_CHAR_CODES = arrayFromLowToHigh(65, 90)

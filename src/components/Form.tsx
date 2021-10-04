@@ -74,8 +74,8 @@ const Form = () => {
             onChange={onCharacterChange}
           />
           <input
-            className='input-number'
             id='characterAmountForNumber'
+            className='input-number'
             type='number'
             min={min}
             max={max}
