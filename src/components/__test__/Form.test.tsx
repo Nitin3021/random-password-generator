@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import Form from '../Form'
 
 it('renders component with default values', () => {
@@ -48,24 +48,41 @@ it('does not call appropriate function when clicked on Copy, if there is no cont
   expect(onCopyToClipboard).not.toHaveBeenCalled()
 })
 
-// it('calls appropriate function when clicked on Copy, after password is generated', () => {
-//   const onCopyToClipboard = jest.fn()
+it('calls appropriate function when clicked on Copy, after password is generated', async () => {
+  Object.assign(navigator, {
+    clipboard: {
+      writeText: jest.fn().mockImplementation(() => Promise.resolve())
+    }
+  })
 
-//   render(<Form />)
+  jest.spyOn(navigator.clipboard, 'writeText')
 
-//   const buttonGenerate = screen.getByText(/Generate Password/i)
-//   fireEvent.click(buttonGenerate)
+  const result = render(<Form />)
 
-//   Object.assign(navigator, {
-//     clipboard: {
-//       writeText: jest.fn().mockImplementation(() => Promise.resolve())
-//     }
-//   })
+  const buttonGenerate = screen.getByRole('button', {
+    name: /generate password/i
+  })
 
-//   jest.spyOn(navigator.clipboard, 'writeText')
+  fireEvent.click(buttonGenerate)
 
-//   const buttonCopy = screen.getByText(/Copy/i)
-//   fireEvent.click(buttonCopy)
+  Object.assign(navigator, {
+    clipboard: {
+      writeText: jest.fn().mockImplementation(() => Promise.resolve())
+    }
+  })
 
-//   expect(onCopyToClipboard).toHaveBeenCalled()
-// })
+  const buttonCopy = screen.getByRole('button', { name: /copy/i })
+
+  act(() => {
+    /* fire events that update state */
+    fireEvent.click(buttonCopy)
+  })
+
+  const randomPassword = result.container.querySelector('.password-display')
+
+  await waitFor(() =>
+    expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
+      randomPassword?.innerHTML
+    )
+  )
+})
